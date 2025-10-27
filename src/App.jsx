@@ -1,6 +1,6 @@
 import React from 'react';
-import heroBg from './hero-bg.webp';        // 👈 background image you uploaded
-import remLogo from './remax-logo.png';    // 👈 RE/MAX logo
+import heroBg from './hero-bg.webp';      // ← your house photo
+import remLogo from './remax-logo.png';   // ← your office logo (exact name matters)
 
 const sold = [
   { address: "1203 W Temple Ave, Effingham, IL", price: "$225,500", date: "09/05/2025", beds: 3, baths: 3, sqft: 1500, role: "Listing Agent" },
@@ -19,86 +19,54 @@ const pending = [
 export default function App() {
   return (
     <div>
-      {/* 🏡 HERO SECTION */}
-      <div
-        className="hero"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          height: '80vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          color: 'white',
-          position: 'relative'
-        }}
-      >
-        <img
-          src={remLogo}
-          alt="RE/MAX Key Advantage"
-          style={{
-            width: '250px',
-            maxWidth: '80%',
-            marginBottom: '20px'
-          }}
-        />
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 800, lineHeight: 1.1 }}>
-          Effingham Real Estate — Done Right
-        </h1>
-        <p style={{ maxWidth: 600, marginTop: 8 }}>
-          Justin Ruholl • RE/MAX Key Advantage • Serving Effingham, Mattoon & Central Illinois
-        </p>
-        <div className="cta" style={{ marginTop: 20 }}>
-          <a className="button" href="#contact" style={{ marginRight: 10 }}>
-            Get Your Home Value
-          </a>
-          <a className="button ghost" href="#sold">
-            View Sold Homes
-          </a>
+      {/* HERO */}
+      <div className="hero" style={{ backgroundImage: `url(${heroBg})` }}>
+        <div className="hero__overlay" />
+        <div className="container hero__content">
+          <img src={remLogo} alt="RE/MAX Key Advantage" className="hero__logo" />
+          <h1>Effingham Real Estate — Done Right</h1>
+          <p>Justin Ruholl • RE/MAX Key Advantage • Serving Effingham, Mattoon & Central Illinois</p>
+          <div className="cta">
+            <a className="button" href="#contact">Get Your Home Value</a>
+            <a className="button ghost" href="#sold">View Sold Homes</a>
+          </div>
         </div>
       </div>
 
-      {/* UNDER CONTRACT SECTION */}
+      {/* UNDER CONTRACT */}
       <div className="container" id="pending">
         <h2>Under Contract</h2>
         <div className="grid">
           {pending.map((p, i) => (
             <div className="card" key={i}>
               <div className="pad">
-                <div style={{ fontWeight: 700 }}>{p.address}</div>
-                <div className="badge" style={{ marginTop: 6 }}>{p.price}</div>
-                <div className="small" style={{ marginTop: 6 }}>{p.role}</div>
+                <div style={{fontWeight:700}}>{p.address}</div>
+                <div className="badge" style={{marginTop:6}}>{p.price}</div>
+                <div className="small" style={{marginTop:6}}>{p.role}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* SOLD SECTION */}
+      {/* SOLD */}
       <div className="container" id="sold">
         <h2>Recently Sold</h2>
         <div className="grid">
           {sold.map((p, i) => (
             <div className="card" key={i}>
               <div className="pad">
-                <div style={{ fontWeight: 700 }}>{p.address}</div>
-                <div className="badge" style={{ marginTop: 6 }}>{p.price}</div>
-                <div className="small" style={{ marginTop: 6 }}>
-                  {p.beds} bed • {p.baths} bath • {p.sqft.toLocaleString()} SF
-                </div>
-                <div className="small" style={{ marginTop: 6 }}>
-                  {p.role} • Sold {p.date}
-                </div>
+                <div style={{fontWeight:700}}>{p.address}</div>
+                <div className="badge" style={{marginTop:6}}>{p.price}</div>
+                <div className="small" style={{marginTop:6}}>{p.beds} bed • {p.baths} bath • {p.sqft.toLocaleString()} SF</div>
+                <div className="small" style={{marginTop:6}}>{p.role} • Sold {p.date}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* CONTACT SECTION */}
+      {/* CONTACT */}
       <div className="container" id="contact">
         <h2>Contact</h2>
         <p>Phone: (217) 663-0563 • Email: ruhollrealtor@gmail.com</p>
@@ -106,9 +74,7 @@ export default function App() {
       </div>
 
       {/* FOOTER */}
-      <div className="footer">
-        © {new Date().getFullYear()} Justin Ruholl — Equal Housing Opportunity
-      </div>
+      <div className="footer">© {new Date().getFullYear()} Justin Ruholl — Equal Housing Opportunity</div>
     </div>
   );
 }
